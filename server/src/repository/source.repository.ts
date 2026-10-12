@@ -29,6 +29,7 @@ export type SourceRecord = Prisma.SourceGetPayload<{
     select: typeof sourceSelect;
 }>;
 
+
 export function createSourceRecord(data: CreateSourceData) {
     return prisma.source.create({
         data: {
@@ -43,6 +44,7 @@ export function createSourceRecord(data: CreateSourceData) {
         select: sourceSelect,
     });
 }
+
 
 export function findSourcesByWorkspaceId(
     workspaceId: string,
@@ -87,6 +89,7 @@ export async function deleteSourceRecord(sourceId: string) {
         where: { id: sourceId },
     });
 }
+
 
 export function findSourceById(sourceId: string) {
     return prisma.source.findUnique({
