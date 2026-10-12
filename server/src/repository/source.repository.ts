@@ -43,3 +43,31 @@ export function createSourceRecord(data: CreateSourceData) {
         select: sourceSelect,
     });
 }
+
+export function findSourcesByWorkspaceId(
+    workspaceId: string,
+    filters: ListSourcesQuery = {},
+) {
+    const where: Prisma.SourceWhereInput = { workspaceId };
+
+    if (filters.type) {
+        where.type = filters.type;
+    }
+
+    if (filters.status) {
+        where.status = filters.status;
+    }
+
+    if (filters.q) {
+        where.OR = [
+            { title: { contains: filters.q, mode: "insensitive" } },
+            { content: { contains: filters.q, mode: "insensitive" } },
+        ];
+    }
+
+    return prisma.source.findMany({
+        where,
+        select: sourceSelect,
+        orderBy: { createdAt: "desc" },
+    });
+}
