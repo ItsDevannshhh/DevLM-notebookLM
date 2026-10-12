@@ -19,3 +19,10 @@ sourceRoutes.post(
     uploadSinglePdf,
     asyncHandler(uploadPdf),
 );
+sourceRoutes.post("/import/website", asyncHandler(importWebsite));
+sourceRoutes.post("/import/youtube", asyncHandler(importYoutube));
+sourceRoutes.get("/", asyncHandler(listSources));
+sourceRoutes.post("/", asyncHandler(createSource));
+sourceRoutes.post("/bulk-delete", asyncHandler(bulkDeleteSources));
+sourceRoutes.get("/:sourceId", asyncHandler(getSource));
+sourceRoutes.delete("/:sourceId", asyncHandler(deleteSource));
