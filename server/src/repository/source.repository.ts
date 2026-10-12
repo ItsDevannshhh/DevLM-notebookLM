@@ -15,3 +15,16 @@ export const sourceSelect = {
     updatedAt: true,
 } as const;
 
+export type CreateSourceData = {
+    workspaceId: string;
+    type: SourceRecord["type"];
+    title: string;
+    content?: string | null;
+    url?: string | null;
+    status?: SourceRecord["status"];
+    metadata?: Prisma.InputJsonValue;
+};
+
+export type SourceRecord = Prisma.SourceGetPayload<{
+    select: typeof sourceSelect;
+}>;
