@@ -31,7 +31,7 @@ app.get("/health", (_req, res) => {
 
 registerRoutes(app);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
